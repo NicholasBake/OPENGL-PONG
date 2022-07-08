@@ -9,14 +9,16 @@
 #include <engine/shaperenders/quad.h>
 
 #include <vector>
+#include <string>
 #include <iostream>
 class quad;
+class tri;
 class engine
 {
     void DrawItems();
     public:
     GLFWwindow *window;
-    vector<tri> tris;
+    std::vector<tri> tris;
     engine()
     {
         glfwInit();
@@ -43,6 +45,7 @@ class engine
 
     }
     void RunGame();
-    void DrawTriangle(float verts[9] = NULL, tri* triangle = NULL);
+    void DrawTriangle(tri* triangle = NULL);
     void DrawQuad(quad Quad);
+
 };

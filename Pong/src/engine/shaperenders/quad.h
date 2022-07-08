@@ -9,11 +9,13 @@ class quad {
     Position position; 
     engine *Engine;
     const char* Material;
-    void drawquad();
-    quad(Position pos, const char* material, engine *ENGINE){
+    std::string Name;
+    void changePosition(float X, float Y);
+    quad(Position pos, const char* material, engine *ENGINE, std::string name){
 
         position.x = pos.x;
-        position.y = pos.y;        
+        position.y = pos.y;
+        position.size = pos.size;        
 
         tri1Pos.size = pos.size;
         tri1Pos.x = position.x;
@@ -28,5 +30,6 @@ class quad {
         
         Engine = ENGINE;
         Material = material;
+        Name = name;
     }
 };

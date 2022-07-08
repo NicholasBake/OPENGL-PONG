@@ -1,5 +1,4 @@
 #include<engine/shaperenders/tri.h>
-#include<engine/Util/Colors.hpp>
 #include <string>
 void tri::drawTri(const char* Material){
     unsigned int VAO;
@@ -73,4 +72,17 @@ void tri::drawTri(const char* Material){
     glDeleteBuffers(1, &VBO);
     glDeleteProgram(shaderProgram);
     glDeleteVertexArrays(1, &VAO);
+}
+void tri::changePosition(float X, float Y){
+
+    for (int i = 0; i < tri::Engine->tris.size(); i++)
+    {
+        if(tri::Engine->tris[i].name == tri::name){
+            tri::Engine->tris.erase(tri::Engine->tris.begin() + i);
+        }
+    }
+    std::cout << "Called!" << endl;
+    Position newPos(tri::Positionz.x + X,tri::Positionz.y + Y, tri::Positionz.size, tri::Positionz.TypeofTri);
+    tri newTriToDraw(newPos, tri::Material, tri::Engine, tri::name);
+    tri::Engine->DrawTriangle(&newTriToDraw);
 }

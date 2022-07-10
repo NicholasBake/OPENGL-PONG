@@ -1,24 +1,25 @@
 #include <engine/engine.h>
 #include <iostream>
 engine myEngine;
+
+Position posOfPlayer1(-0.8, 0.0, 0.2, "quad");
+quad Player1(posOfPlayer1, Red, &myEngine, "Player1");
+
+Position posOfPlayer2(0.8, 0.0, 0.2, "quad");
+quad Player2(posOfPlayer2, Blue, &myEngine, "Player2");
+
+float speed = 2;
+
+void engine::Start(){
+    myEngine.DrawQuad(Player1);
+    myEngine.DrawQuad(Player2);
+}
+void engine::Update(){
+    
+}
+
 int main()
 {
-    Position pos(0.1f, 0, 0.2f, "Quad");
-    quad myRect(pos, Green, &myEngine, "MyRect");
-
-    Position Pos(-0.5f, 0.0f, 0.1f, "Quad");
-    quad mySecondRect(Pos, Blue, &myEngine, "MyRectangle"); 
-
-    Position posofTriangle(0.0, -0.5, 0.4, "Triangle");
-    tri myTriangle(posofTriangle, White, &myEngine, "TheTriangle");
-
-    myEngine.DrawQuad(myRect);
-    myEngine.DrawQuad(mySecondRect);
-    myEngine.DrawTriangle(&myTriangle);
-
-    mySecondRect.changePosition(0.0f, 0.0);
-    myRect.changePosition(-0.2f,0.1f);
-    myTriangle.changePosition(0.5, 0.0);
     myEngine.RunGame();
     return 0;
 }

@@ -6,9 +6,11 @@
 #include <engine/shaperenders/tri.h>
 #include <engine/Util/Position.h>
 #include <engine/Util/Colors.hpp>
+#include <engine/Util/Keys.hpp>
 #include <engine/shaperenders/quad.h>
 
 #include <vector>
+#include <algorithm>
 #include <string>
 #include <iostream>
 class quad;
@@ -16,9 +18,14 @@ class tri;
 class engine
 {
     void DrawItems();
+    void updateDeltaTime();
     public:
+    float lastFrame;
+    float deltaTime;
+    static int currentKey;
     GLFWwindow *window;
     std::vector<tri> tris;
+    static std::vector<int> KeysPressed;
     engine()
     {
         glfwInit();
@@ -47,5 +54,7 @@ class engine
     void RunGame();
     void DrawTriangle(tri* triangle = NULL);
     void DrawQuad(quad Quad);
-
+    static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    void Update();
+    void Start();
 };

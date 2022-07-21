@@ -15,7 +15,18 @@ void engine::Start(){
     myEngine.DrawQuad(Player2);
 }
 void engine::Update(){
-    
+    if(myEngine.KeyBeingPressed(W)){
+        Player1.changePosition(0, 0.3 * deltaTime);
+    }
+    if(myEngine.KeyBeingPressed(UP)){
+        Player2.changePosition(0, 0.3 * deltaTime);
+    }
+    if(myEngine.KeyBeingPressed(S)){
+        Player1.changePosition(0, -0.3 * deltaTime);
+    }
+    if(myEngine.KeyBeingPressed(DOWN)){
+        Player2.changePosition(0, -0.3 * deltaTime);
+    }
 }
 
 int main()

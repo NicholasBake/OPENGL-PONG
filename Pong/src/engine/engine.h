@@ -10,6 +10,7 @@
 #include <engine/shaperenders/quad.h>
 
 #include <vector>
+#include <set>
 #include <algorithm>
 #include <string>
 #include <iostream>
@@ -25,7 +26,7 @@ class engine
     static int currentKey;
     GLFWwindow *window;
     std::vector<tri> tris;
-    static std::vector<int> KeysPressed;
+    static std::set<int> KeysPressed;
     engine()
     {
         glfwInit();
@@ -54,6 +55,7 @@ class engine
     void RunGame();
     void DrawTriangle(tri* triangle = NULL);
     void DrawQuad(quad Quad);
+    bool KeyBeingPressed(int key);
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
     void Update();
     void Start();

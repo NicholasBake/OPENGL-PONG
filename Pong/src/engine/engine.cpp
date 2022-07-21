@@ -1,7 +1,7 @@
 #include <engine/engine.h>
 
 int engine::currentKey;
-std::vector<int> engine::KeysPressed;
+std::set<int> engine::KeysPressed;
 
 void engine::RunGame()
 {
@@ -47,28 +47,22 @@ void engine::updateDeltaTime(){
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 }
+bool engine::KeyBeingPressed(int key){
+    std::set<int>::iterator iter;
+    iter = engine::KeysPressed.find(key);
+    if(iter != engine::KeysPressed.end()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 void engine::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods){
-
-    std::vector<int>::iterator Iterator;
-    int index = 0;
-
     currentKey = key;
-
-    
-    Iterator = std::find(KeysPressed.begin(), KeysPressed.end(), currentKey);
-    index = std::distance(KeysPressed.begin(), Iterator);
-    
-    if(action == GLFW_RELEASE && Iterator != KeysPressed.end()){
-        KeysPressed.erase(KeysPressed.begin() + index);
+    if(action == GLFW_RELEASE){
+        engine::KeysPressed.erase(currentKey);
+        return;
     }
-    if(Iterator == KeysPressed.end()){
-        KeysPressed.push_back(currentKey);
-    }
-    
-    for (int i = 0; i < KeysPressed.size(); i++)
-    {
-        std::cout << KeysPressed[i] << endl;
-    }
-       
-    
+    engine::KeysPressed.insert(currentKey);
+    std::cout << KeysPressed.size() << endl;
 }

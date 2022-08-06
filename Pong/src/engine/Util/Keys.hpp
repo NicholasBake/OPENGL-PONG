@@ -8,3 +8,5 @@ constexpr int S = GLFW_KEY_S;
 constexpr int D = GLFW_KEY_D;
 constexpr int UP = GLFW_KEY_UP;
 constexpr int DOWN = GLFW_KEY_DOWN;
+constexpr int LEFT = GLFW_KEY_LEFT;
+constexpr int RIGHT = GLFW_KEY_RIGHT;

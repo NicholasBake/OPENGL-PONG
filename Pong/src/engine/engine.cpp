@@ -64,5 +64,23 @@ void engine::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
         return;
     }
     engine::KeysPressed.insert(currentKey);
-    std::cout << KeysPressed.size() << endl;
+}
+void engine::checkForQuadCollision(quad objOne, quad objTwo,  std::function<void()> onCollision, std::function<void()> onTopCollision){
+    objOne.boundingBoxX = objOne.position.x + objOne.position.size;
+    objOne.boundingBoxY = objOne.position.y - objOne.position.size;
+
+    objTwo.boundingBoxX = objTwo.position.x + objTwo.position.size;
+    objTwo.boundingBoxY = objTwo.position.y - objTwo.position.size;
+
+    if(objOne.boundingBoxX >= 1.0 || objOne.boundingBoxX - objOne.position.size * 2 <= -1.0 ){
+        onCollision();
+    }
+    if(objOne.boundingBoxY <= -1.0 || objOne.boundingBoxY + objOne.position.size * 2 >= 1.0){
+        onTopCollision();
+    }
+    if(objOne.boundingBoxX <= objTwo.boundingBoxX && objOne.boundingBoxX >= objTwo.boundingBoxX - objTwo.position.size * 2 || objOne.boundingBoxX - objOne.position.size * 2 >= objTwo.boundingBoxX - objTwo.position.size * 2 && objOne.boundingBoxX - objOne.position.size * 2 <= objTwo.boundingBoxX){
+        if(objOne.boundingBoxY >= objTwo.boundingBoxY && objOne.boundingBoxY <= objTwo.boundingBoxY + objTwo.position.size * 2 || objOne.boundingBoxY + objOne.position.size * 2 >= objTwo.boundingBoxY && objOne.boundingBoxY + objOne.position.size * 2 <= objTwo.boundingBoxY + objTwo.position.size * 2){
+            onCollision();
+        }
+    }
 }

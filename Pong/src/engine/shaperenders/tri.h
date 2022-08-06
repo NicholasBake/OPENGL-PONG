@@ -5,6 +5,8 @@ using namespace std;
 class engine;
 class tri {
     public:
+    float boundingBoxX;
+    float boundingBoxY;
     Position Positionz;
     engine *Engine;
     const char* Material;
@@ -22,6 +24,8 @@ class tri {
         Positionz.x = position.x;
         Positionz.y = position.y;
         name = nam;
+        boundingBoxX = 0;
+        boundingBoxY = 0;
         drawTri(mat);
     }
 };

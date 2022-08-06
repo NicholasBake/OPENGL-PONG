@@ -9,6 +9,7 @@
 #include <engine/Util/Keys.hpp>
 #include <engine/shaperenders/quad.h>
 
+#include <functional>
 #include <vector>
 #include <set>
 #include <algorithm>
@@ -59,4 +60,5 @@ class engine
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
     void Update();
     void Start();
+    void checkForQuadCollision(quad objOne, quad objTwo, std::function<void()> onCollision, std::function<void()> onTopCollision);
 };

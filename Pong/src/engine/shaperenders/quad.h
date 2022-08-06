@@ -3,6 +3,8 @@
 class engine;
 class quad {
     public:
+    float boundingBoxX;
+    float boundingBoxY;
     Position tri1Pos;
     Position tri2Pos;
     GLFWwindow*window;
